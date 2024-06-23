@@ -19,8 +19,6 @@
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link" href="privacy-policy.html">Privacy Policy</a></li>
-                    <li class="nav-item"><a class="nav-link" href="dmca.html">DMCA</a></li>
                 </ul>
             </div>
         </div>
@@ -43,8 +41,8 @@
                     <h5>Navigation</h5>
                     <ul class="list-unstyled d-flex flex-wrap justify-content-around">
                         <li class="nav-item"><a href="index.html" class="text-white nav-link">Home</a></li>
-                        <li class="nav-item"><a href="#" class="text-white nav-link">About</a></li>
-                        <li class="nav-item"><a href="#" class="text-white nav-link">Contact</a></li>
+                        <li class="nav-item"><a href="about.html" class="text-white nav-link">About</a></li>
+                        <li class="nav-item"><a href="contact.html" class="text-white nav-link">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -54,24 +52,30 @@
         window.onload = function() {
             const hash = window.location.hash;
             if (hash.startsWith('#short=')) {
-                const originalUrl = atob(hash.substring(7));
-                const countdownElement = document.getElementById('countdown');
-                const timerContainer = document.getElementById('timerContainer');
-                const startButton = document.getElementById('startButton');
-                let countdown = 20;
+                const shortCode = hash.substring(7);
+                const originalUrl = localStorage.getItem(shortCode);
+                if (originalUrl) {
+                    const countdownElement = document.getElementById('countdown');
+                    const timerContainer = document.getElementById('timerContainer');
+                    const startButton = document.getElementById('startButton');
+                    let countdown = 20;
 
-                startButton.addEventListener('click', function() {
-                    timerContainer.classList.remove('d-none');
-                    startButton.classList.add('d-none');
-                    const interval = setInterval(function() {
-                        countdown--;
-                        countdownElement.textContent = countdown;
-                        if (countdown === 0) {
-                            clearInterval(interval);
-                            window.location.href = originalUrl;
-                        }
-                    }, 1000);
-                });
+                    startButton.addEventListener('click', function() {
+                        timerContainer.classList.remove('d-none');
+                        startButton.classList.add('d-none');
+                        const interval = setInterval(function() {
+                            countdown--;
+                            countdownElement.textContent = countdown;
+                            if (countdown === 0) {
+                                clearInterval(interval);
+                                window.location.href
+                                = originalUrl;
+                            }
+                        }, 1000);
+                    });
+                } else {
+                    alert("Invalid short URL");
+                }
             }
         };
     </script>
