@@ -1,0 +1,191 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.hero {
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 99;
+}
+
+.animate-text {
+    animation: slide-in-left 2s ease-in-out forwards;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: url('image/herobg.jpg') no-repeat right center/cover;
+    z-index: 1;
+    animation: slide-in-right 2s ease-in-out forwards;
+}
+
+@keyframes slide-in-left {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-right {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.navbar .nav-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    left: 0;
+    bottom: -5px;
+    background: white;
+    transition: width 0.4s;
+}
+
+.navbar .nav-link:hover::after {
+    width: 100%;
+}
+
+.navbar .nav-link:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    background: linear-gradient(45deg, #1d2b64, #f8cdda);
+}
+
+footer h5 {
+    font-size: 1.25rem;
+}
+
+footer p, footer ul {
+    margin: 0;
+    padding: 0;
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer ul li {
+    margin-bottom: 0.5rem;
+}
+
+footer ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
+}
+
+footer ul.d-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+footer ul.d-flex li.nav-item {
+    margin: 0 10px;
+}
+/* Custom styles for the link shortener container */
+.link-shortener-container {
+    background-color: #f8f9fa; /* Light background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 2rem; /* Padding for inner spacing */
+    margin-top: 2rem; /* Margin to separate from elements above */
+}
+
+.link-shortener-container h2 {
+    color: #343a40; /* Darker heading color */
+    margin-bottom: 1rem; /* Space below the heading */
+    text-align: center; /* Center align the heading */
+}
+
+.link-shortener-container .form-control {
+    border: 2px solid #ced4da; /* Border for input fields */
+    border-radius: 5px; /* Rounded input fields */
+}
+
+.link-shortener-container .btn-primary {
+    background: linear-gradient(to right, #007bff, #0056b3); /* Gradient background for button */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners for button */
+    transition: background 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.link-shortener-container .btn-primary:hover {
+    background: linear-gradient(to right, #0056b3, #004085); /* Darker gradient on hover */
+}
+
+.link-shortener-container .shortened-link {
+    margin-top: 1rem; /* Space above the shortened link display */
+    text-align: center; /* Center align the shortened link */
+}
+
+@media (max-width: 768px) {
+    .link-shortener-container {
+        padding: 1.5rem; /* Adjust padding for smaller screens */
+    }
+
+    .link-shortener-container h2 {
+        font-size: 1.5rem; /* Adjust heading size for smaller screens */
+    }
+
+    .link-shortener-container .btn-primary {
+        width: 100%; /* Full width button on smaller screens */
+        font-size: 1.2rem; /* Adjust button text size */
+    }
+}
+@media (max-width: 768px) {
+    .navbar-nav {
+        text-align: center; /* Center align links on small screens */
+    }
+
+    .navbar-nav .nav-item {
+        width: 100%; /* Full width for nav items */
+    }
+
+    .navbar-nav .nav-link {
+        display: block; /* Block display for nav links */
+        padding: 1rem; /* Padding for better spacing */
+    }
+}
+

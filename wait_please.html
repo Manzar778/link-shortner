@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">Link Shortener</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="privacy-policy.html">Privacy Policy</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dmca.html">DMCA</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container text-center my-4">
+        <h1>Please Wait...</h1>
+        <div id="timerContainer" class="d-none">
+            <p>Redirecting in <span id="countdown">5</span> seconds...</p>
+        </div>
+        <button id="startButton" class="btn btn-primary mt-3">Go to Link</button>
+    </div>
+    <footer class="bg-primary text-white mt-5">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Link Shortener</h5>
+                    <p>Simplify your URLs</p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Navigation</h5>
+                    <ul class="list-unstyled d-flex flex-wrap justify-content-around">
+                        <li class="nav-item"><a href="index.html" class="text-white nav-link">Home</a></li>
+                        <li class="nav-item"><a href="#" class="text-white nav-link">About</a></li>
+                        <li class="nav-item"><a href="#" class="text-white nav-link">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        window.onload = function() {
+            const hash = window.location.hash;
+            if (hash.startsWith('#short=')) {
+                const originalUrl = atob(hash.substring(7));
+                const countdownElement = document.getElementById('countdown');
+                const timerContainer = document.getElementById('timerContainer');
+                const startButton = document.getElementById('startButton');
+                let countdown = 10;
+
+                startButton.addEventListener('click', function() {
+                    timerContainer.classList.remove('d-none');
+                    startButton.classList.add('d-none');
+                    const interval = setInterval(function() {
+                        countdown--;
+                        countdownElement.textContent = countdown;
+                        if (countdown === 0) {
+                            clearInterval(interval);
+                            window.location.href = originalUrl;
+                        }
+                    }, 1000);
+                });
+            }
+        };
+    </script>
+</body>
+</html>
